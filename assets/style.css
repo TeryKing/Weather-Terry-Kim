@@ -59,19 +59,16 @@ label
 
 .uv-favorable{
     background-color: green;
-    border-radius: 5px;
     color: black;
 }
 
 .uv-moderate{
     background-color: orange;
-    border-radius: 5px;
     color: black;
 }
 
 .uv-severe{
     background-color: red;
-    border-radius: 5px;
     color: black;
 }
 
