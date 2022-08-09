@@ -17,7 +17,6 @@ html{
 
 .jumbotron {
     padding: 10px;
-    border-radius: 0;
 }
 body{
     background-image: linear-gradient(to bottom right, rgb(243, 112, 112), rgb(229, 236, 120));
@@ -29,7 +28,7 @@ label
     font-weight: bold;
 }
 
-#search-city{
+#searchcity{
     width:75%;
     
 }
