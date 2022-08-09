@@ -1,0 +1,77 @@
+html{
+    height:100%;
+}
+#header{
+    background-size: cover;
+    background-position-y: 40%;
+    color:black;
+    background-image: linear-gradient(to bottom right, lightblue, rgb(135, 128, 233));
+    position: relative;
+}
+
+#header h1{
+    font-size: 400%;
+    text-align: center;
+    font-weight: bold;
+}
+
+.jumbotron {
+    padding: 10px;
+    border-radius: 0;
+}
+body{
+    background-image: linear-gradient(to bottom right, rgb(243, 112, 112), rgb(229, 236, 120));
+    height: 100%;
+}
+
+label
+{
+    font-weight: bold;
+}
+
+#search-city{
+    width:75%;
+    
+}
+
+#search-button-icon{
+    width:15px;
+    display:inline-block;
+}
+
+#current-weather {
+    padding-left: 15px;
+}
+
+#clear-storage{
+    color:black;
+    font-size: 20px;
+}
+
+.weather-card{
+    width: 120px;
+    background-color: #0275d8;
+    color: black;
+    text-align: center;
+    font-weight: bold;
+    
+}
+
+.uv-favorable{
+    background-color: green;
+    border-radius: 5px;
+    color: black;
+}
+
+.uv-moderate{
+    background-color: orange;
+    border-radius: 5px;
+    color: black;
+}
+
+.uv-severe{
+    background-color: red;
+    border-radius: 5px;
+    color: black;
+}
+
