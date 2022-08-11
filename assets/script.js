@@ -1,8 +1,7 @@
+//API KEY for Open Weather
 var myAPI = "c10398046f11053f7d7f2aa0ce7f3c2c";
 var myCity = "";
 var lastCity = "";
-
-
 
 var Weather = function (event) 
 {
@@ -16,13 +15,13 @@ var Weather = function (event)
         return response.json();
     })
     .then(function (response)  
-    {
+    {   //Location fetch to grab city location, and weather information for the main dashboard
         saveCity(city);
         $('#searcherror').text("");
-        let currentTimeUTC = response.dt;
-        let currentTimeZoneOffset = response.timezone;
-        let currentTimeZoneOffsetHours = currentTimeZoneOffset / 60 / 60;
-        let currentMoment = moment.unix(currentTimeUTC).utc().utcOffset(currentTimeZoneOffsetHours);
+        let TimeUTC = response.dt;
+        let TimeZone = response.timezone;
+        let TimeZoneHours = TimeZone / 60 / 60;
+        let currentMoment = moment.unix(TimeUTC).utc().utcOffset(TimeZoneHours);
         renderCities();
         getFiveDayForecast(event);
         $('#header-text').text(response.name);
@@ -35,6 +34,8 @@ var Weather = function (event)
                 <li id="uvIndex">UV Index:</li>
             </ul>`;
         $('#current-weather').html(currentWeatherHTML);
+
+        //UV INDEX function which will display certain UV value will apply a certain CSS using IF statement.
         let lat = response.coord.lat;
         let long = response.coord.lon;
         let UVURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + long +"&exclude=minutely,daily" + "&appid=" + myAPI;
@@ -63,6 +64,7 @@ var Weather = function (event)
     })
 }
 
+//This function will be displaying the 5 day forecast below the main dashboard
 var getFiveDayForecast = function()  
 {
     let city = $('#searchcity').val();
@@ -80,9 +82,9 @@ var getFiveDayForecast = function()
         {
             let dayData = response.list[i];
             let dayTimeUTC = dayData.dt;
-            let timeZoneOffset = response.city.timezone;
-            let timeZoneOffsetHours = timeZoneOffset / 60 / 60;
-            let thisMoment = moment.unix(dayTimeUTC).utc().utcOffset(timeZoneOffsetHours);
+            let timeZone = response.city.timezone;
+            let timeZoneHours = timeZone / 60 / 60;
+            let thisMoment = moment.unix(dayTimeUTC).utc().utcOffset(timeZoneHours);
             if (thisMoment.format("HH:mm:ss") === "11:00:00" || thisMoment.format("HH:mm:ss") === "12:00:00" || thisMoment.format("HH:mm:ss") === "13:00:00") 
             {
                 fiveDayForecastHTML += `
@@ -131,7 +133,7 @@ var renderCities = function()
         
         else 
         {
-            $('#searchcity').attr("value", "Enter A City");
+            $('#searchcity').attr("value", "Mexico");
         }
     } 
     
