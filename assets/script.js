@@ -3,6 +3,8 @@ var myAPI = "c10398046f11053f7d7f2aa0ce7f3c2c";
 var myCity = "";
 var lastCity = "";
 
+
+//weather function for temperature,humidity, and wind speed. Using api key here to retrieve information for display
 var Weather = function (event) 
 {
     let city = $('#searchcity').val();
@@ -24,6 +26,7 @@ var Weather = function (event)
         let currentMoment = moment.unix(TimeUTC).utc().utcOffset(TimeZoneHours);
         renderCities();
         getFiveDayForecast(event);
+        //Inputing text inside the html content when function flows
         $('#header-text').text(response.name);
         let currentWeatherHTML = `
             <h3>${response.name} ${currentMoment.format("(MM/DD/YY)")}</h3>
@@ -47,6 +50,7 @@ var Weather = function (event)
         })
         .then(function (response)  
         {
+            //simple if statement to determine UV index is favorable to severe
             let uvIndex = response.current.uvi;
             $('#uvIndex').html(`UV Index: <span id="uvValue"> ${uvIndex}</span>`);
             if (uvIndex>=0 && uvIndex<3)
@@ -80,6 +84,7 @@ var getFiveDayForecast = function()
         let fiveDayForecastHTML = '<h2>5 Day Forecast:</h2> <div id="fivedayUl" class="d-inline-flex flex-wrap ">';
         for (let i = 0; i < response.list.length; i++) 
         {
+            //Putting timezone using moment
             let dayData = response.list[i];
             let dayTimeUTC = dayData.dt;
             let timeZone = response.city.timezone;
@@ -103,7 +108,7 @@ var getFiveDayForecast = function()
     })
 }
 
-
+//Local Storage function to save user inputed cities
 var saveCity = function (newCity)  
 {
     let cityExists = false;
@@ -121,6 +126,7 @@ var saveCity = function (newCity)
     }
 }
 
+//Rendering Cities for displaying cities
 var renderCities = function()  
 {
     $('#city-results').empty();
@@ -137,6 +143,7 @@ var renderCities = function()
         }
     } 
     
+    //Loop to get city and local storage when rendering
     else 
     {
         let lastCityKey="cities"+(localStorage.length-1);
@@ -175,6 +182,8 @@ var renderCities = function()
     
 }
 
+
+//onclick function for city search function
 $('#search-button').on("click", function (event) 
 {
 event.preventDefault();
@@ -190,15 +199,18 @@ $('#city-results').on("click", function (event)
     Weather(event);
 });
 
+//Clearing function upon clicking Clear storage element
 $("#clear-storage").on("click", function()  
 {
     localStorage.clear();
     renderCities();
 });
 
+//Rendering cities and the weather
 renderCities();
 Weather();
 
+//Error function for in case for incorrect response
 var handleErrors = function (response) 
 {
     if (!response.ok) 

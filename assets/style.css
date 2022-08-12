@@ -1,6 +1,9 @@
+
+/*HTML CSS*/
 html{
     height:100%;
 }
+/*Putting a header with simple color and positioning*/
 #header{
     background-size: cover;
     background-position-y: 40%;
@@ -18,6 +21,8 @@ html{
 .jumbotron {
     padding: 10px;
 }
+
+/*Seperate color for the body to display the main city name on the header*/
 body{
     background-image: linear-gradient(to bottom right, rgb(243, 112, 112), rgb(229, 236, 120));
     height: 100%;
@@ -56,6 +61,7 @@ label
     
 }
 
+/*The UV index colors apply when the javascript function for UVindex renders*/
 .uv-favorable{
     background-color: green;
     color: black;
