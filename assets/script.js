@@ -81,7 +81,7 @@ var getFiveDayForecast = function()
         })
         .then(function(response)  
         {
-        let fiveDayForecastHTML = '<h2>5 Day Forecast:</h2> <div id="fivedayUl" class="d-inline-flex flex-wrap ">';
+        let FiveDayForecastHTML = '<h2>5 Day Forecast:</h2> <div id="fivedayUl" class="d-inline-flex flex-wrap ">';
         for (let i = 0; i < response.list.length; i++) 
         {
             //Putting timezone using moment
@@ -89,13 +89,13 @@ var getFiveDayForecast = function()
             let dayTimeUTC = dayData.dt;
             let timeZone = response.city.timezone;
             let timeZoneHours = timeZone / 60 / 60;
-            let thisMoment = moment.unix(dayTimeUTC).utc().utcOffset(timeZoneHours);
-            if (thisMoment.format("HH:mm:ss") === "11:00:00" || thisMoment.format("HH:mm:ss") === "12:00:00" || thisMoment.format("HH:mm:ss") === "13:00:00") 
+            let Moment = moment.unix(dayTimeUTC).utc().utcOffset(timeZoneHours);
+            if (Moment.format("HH:mm:ss") === "11:00:00" || Moment.format("HH:mm:ss") === "12:00:00" || Moment.format("HH:mm:ss") === "13:00:00") 
             {
-                fiveDayForecastHTML += `
+                FiveDayForecastHTML += `
                 <div class="weather-card card m-2 p0">
                     <ul class="list-unstyled p-3">
-                        <li>${thisMoment.format("MM/DD/YY")}</li>
+                        <li>${Moment.format("MM/DD/YY")}</li>
                         <br>
                         <li>Temp: ${dayData.main.temp}&#8457;</li>
                         <li>Humidity: ${dayData.main.humidity}%</li>
@@ -103,8 +103,8 @@ var getFiveDayForecast = function()
                 </div>`;
             }
         }
-        fiveDayForecastHTML += "</div>";
-        $('#five-day-forecast').html(fiveDayForecastHTML);
+        FiveDayForecastHTML += "</div>";
+        $('#five-day-forecast').html(FiveDayForecastHTML);
     })
 }
 
@@ -120,6 +120,7 @@ var saveCity = function (newCity)
             break;
         }
     }
+
     if (cityExists === false) 
     {
         localStorage.setItem('cities' + localStorage.length, newCity);
@@ -153,10 +154,12 @@ var renderCities = function()
         {
             let city = localStorage.getItem("cities" + i);
             let cityEl;
+
             if (myCity==="")
             {
                 myCity=lastCity;
             }
+
             if (city === myCity) 
             {
                 cityEl = `<button type="button" class="list-group-item list-group-item-action active">${city}</button></li>`;
@@ -191,6 +194,7 @@ myCity = $('#searchcity').val();
 Weather(event);
 });
 
+//
 $('#city-results').on("click", function (event)  
 {
     event.preventDefault();
