@@ -35,7 +35,6 @@ label
 
 #searchcity{
     width:75%;
-    
 }
 
 #search-button-icon{
@@ -51,10 +50,10 @@ label
     color:black;
     font-size: 20px;
 }
-
+/*Weather card specs and position*/
 .weather-card{
     width: 120px;
-    background-color: #0275d8;
+    background-color: #89ff5b;
     color: black;
     text-align: center;
     font-weight: bold;

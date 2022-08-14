@@ -8,8 +8,8 @@ var lastCity = "";
 var Weather = function (event) 
 {
     let city = $('#searchcity').val();
-    myCity= $('#searchcity').val();
     let APIURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial" + "&APPID=" + myAPI;
+    myCity= $('#searchcity').val();
     fetch(APIURL)
     .then(handleErrors)
     .then(function (response)  
@@ -91,7 +91,7 @@ var getFiveDayForecast = function()
             let timeZoneHours = timeZone / 60 / 60;
             let Moment = moment.unix(dayTimeUTC).utc().utcOffset(timeZoneHours);
             if (Moment.format("HH:mm:ss") === "11:00:00" || Moment.format("HH:mm:ss") === "12:00:00" || Moment.format("HH:mm:ss") === "13:00:00") 
-            {
+            {//adds date thru JS within the five day forecast
                 FiveDayForecastHTML += `
                 <div class="weather-card card m-2 p0">
                     <ul class="list-unstyled p-3">
